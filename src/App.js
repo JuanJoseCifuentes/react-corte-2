@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import Pokedex from "pokedex-promise-v2";
+
+const interval = {
+  limit: 151,
+  offset: 0,
+};
 
 function App() {
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    async function getPokemons() {
+      const pokedex = new Pokedex();
+      const response = await pokedex.getPokemonsList(interval);
+      const urls = response.results.map((pokemon) => pokemon.url);
+      const pokemonsResponse = await pokedex.getResource(urls);
+      setPokemons(pokemonsResponse);
+    }
+
+    getPokemons();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {pokemons.map((pokemon) => (
+        <div className="card">
+          <h1>{pokemon.name}</h1>
+          <img src={pokemon.sprites.front_default} alt={pokemon?.name} />
+          <div>Height: {pokemon.height}</div>
+        </div>
+      ))}
     </div>
   );
 }
