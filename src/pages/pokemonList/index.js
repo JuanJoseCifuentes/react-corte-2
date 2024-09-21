@@ -1,71 +1,60 @@
 import "./index.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Pokedex from "pokedex-promise-v2";
-import { useNavigate } from "react-router-dom";
+
+import SearchBox from "../../components/SearchBox";
+import PokemonCard from "../../components/PokemonCard";
+import Paginated from "../../components/Paginated";
 
 const interval = {
-  limit: 150,
+  limit: 151,
   offset: 0,
 };
 
+const total = 1025;
+
 const ListPokemon = () => {
   const [pokemons, setPokemons] = useState([]);
-  const navigate = useNavigate();
+  const [searched, setSearched] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(0);
 
-  const handleClick = (id) => {
-    navigate(`/detail/${id}`);
+  const handleSearch = (search) => {
+    const filtered = pokemons.filter((pokemon) =>
+      pokemon.name.includes(search)
+    );
+    setSearched(filtered);
   };
 
+  const fetchPokemons = useCallback(async () => {
+    setLoading(true);
+    const pokedex = new Pokedex();
+    const response = await pokedex.getPokemonsList({
+      ...interval,
+      offset: page * interval.limit,
+    });
+    const urls = response.results.map((pokemon) => pokemon.url);
+    const pokemonsResponse = await pokedex.getResource(urls);
+    setPokemons(pokemonsResponse);
+    setSearched(pokemonsResponse);
+    setLoading(false);
+  }, [page, setPokemons, setSearched]);
+
   useEffect(() => {
-    const getPokemons = async () => {
-      const pokedex = new Pokedex();
-      const response = await pokedex.getPokemonsList(interval);
-      const urls = response.results.map((pokemon) => pokemon.url);
-      const PokemonsResponse = await pokedex.getResource(urls);
-      setPokemons(PokemonsResponse);
-    };
-    getPokemons();
-  }, []);
+    fetchPokemons();
+  }, [fetchPokemons]);
 
   return (
     <div className="App">
+      <SearchBox onSearch={handleSearch} />
       <div className="pokedex">
-        {pokemons.map((pokemon, index) => (
-          <div>
-            <div className="id">{pokemon.id}</div>
-            <div className="pokemon" onClick={() => handleClick(pokemon.id)}>
-              <img
-                id="foto"
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
-              ></img>
-              <div id="info">
-                <div id="header">{pokemon.name}</div>
-                {/*
-              <div id="tags">
-                <div class="tag">
-                  <div>HP</div>
-                  <div class="content">1008</div>
-                </div>
-                <div class="tag">
-                  <div>CP</div>
-                  <div class="content">891</div>
-                </div>
-                <div class="tag">
-                  <div>W</div>
-                  <div class="content">{pokemon.weight}kg</div>
-                </div>
-                <div class="tag">
-                  <div>H</div>
-                  <div class="content">{pokemon.height}m</div>
-                </div>
-              </div>
-              */}
-              </div>
-            </div>
-          </div>
-        ))}
+        {loading && <p className="loading">Cargando...</p>}
+        {!loading &&
+          searched.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon}></PokemonCard>
+          ))}
       </div>
+      <Paginated page={page} total={total/interval.limit} setPage={setPage}></Paginated>
     </div>
   );
 };

@@ -1,134 +1,95 @@
-#borde {
-    display: flex;
-    flex-direction: column;
-
-    background-color: #4B5563;
-    border-radius: 16px;
-
-    align-items: center;
-    justify-content: center;
-
-    /*Para centarlo en la pantalla*/
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-
-    height: 381px;
-    width: 253px;
-
-    font-family: 'Roboto', sans-serif;
-}
-
-
 #foto {
     border-radius: 11px 11px 0 0;
     background-color: white;
     height: 213px;
     width: 236px;
-}
-
-#num {
-    position: absolute;
+  }
+  
+  
+  .id {
+    position: relative;
     top: 22px;
-    left: 197px;
-
+    left: 207px;
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+  
     width: 36px;
     height: 36px;
     border-radius: 50%;
-
+  
     color: white;
     background-color: #374151;
-    
+  
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-
-#info {
+  }
+  
+  #info {
     border-radius: 0 0 11px 11px;
     background-color: lightgray;
     height: 147px;
     width: 236px;
-
+  
     display: flex;
     flex-direction: column;
-}
 
-#header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 14px;
+    justify-content: center;
     align-items: center;
-
-    font-size: 18px;
-
-    width: 190px;
-    height: 46px;
-
-    margin-left: 20px;
-    margin-top: 10px;
-}
-
-#typeTag {
+  }
+  
+  #name {
+    font-size: 24px;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  
+  #typeTag {
     color: white;
     background-color: #374151;
     font-size: 12px;
-
+  
     border-radius: 14px;
     width: 52px;
     height: 24px;
-
+  
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#tags {
+  }
+  
+  #tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 6px;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 10px;
-}
-
-.tag {
+  }
+  
+  .tag {
     color: #374151;
     background-color: white;
     font-size: 12px;
-
+  
     display: flex;
     flex-direction: row;
     gap: 4px;
-
+  
     border-radius: 4px;
     height: 18px;
-
+  
     align-items: center;
     padding: 3px;
-}
-
-#desc {
+  }
+  
+  #desc {
     color: grey;
     font-size: 12px;
-}
-
-#back {
-    color: white;
-    background-color: #374151;
-    font-size: 12px;
-}
-
-.content {
-    font-weight: bold;
-}
-  
-#back {
-    color: white;
-    background-color: #374151;
-    font-size: 12px;
   }
+  
+  .content {
+    font-weight: bold;
+  }
+  

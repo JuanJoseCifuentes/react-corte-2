@@ -37,21 +37,21 @@ const DetailPokemon = () => {
               <div id="desc">Tiny Turtle Pokemon</div>
             </div>
             <div id="tags">
-              <div class="tag">
+              <div className="tag">
                 <div>HP</div>
-                <div class="content">1008</div>
+                <div className="content">1008</div>
               </div>
-              <div class="tag">
+              <div className="tag">
                 <div>CP</div>
-                <div class="content">891</div>
+                <div className="content">891</div>
               </div>
-              <div class="tag">
+              <div className="tag">
                 <div>W</div>
-                <div class="content">{pokemon.weight}kg</div>
+                <div className="content">{pokemon.weight}kg</div>
               </div>
-              <div class="tag">
+              <div className="tag">
                 <div>H</div>
-                <div class="content">{pokemon.height}m</div>
+                <div className="content">{pokemon.height}m</div>
               </div>
             </div>
           </div>
