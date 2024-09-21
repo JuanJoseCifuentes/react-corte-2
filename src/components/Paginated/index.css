@@ -1,0 +1,39 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: "Roboto", sans-serif;
+}
+
+.prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#currentPage {
+    margin: 5px;
+    font-weight: bold;
+    font-size: 20px;
+
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    color: white;
+    background-color: #374151;
+    border-radius: 8px;
+    height: 35px;
+
+    font-size: 15px;
+
+    margin: 15px;
+}
