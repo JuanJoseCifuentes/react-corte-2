@@ -31,17 +31,17 @@ const ListPokemon = () => {
     <div className="App">
       <div className="pokedex">
         {pokemons.map((pokemon, index) => (
-          <div className="pokemon" onClick={() => handleClick(pokemon.id)}>
-            <img
-              id="foto"
-              src={pokemon.sprites.front_default}
-              alt={pokemon.name}
-            ></img>
-            <div id="info">
-              <div id="header">
-                {pokemon.name}
-                <div id="typeTag">{pokemon.types[0].type.name}</div>
-              </div>
+          <div>
+            <div className="id">{pokemon.id}</div>
+            <div className="pokemon" onClick={() => handleClick(pokemon.id)}>
+              <img
+                id="foto"
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
+              ></img>
+              <div id="info">
+                <div id="header">{pokemon.name}</div>
+                {/*
               <div id="tags">
                 <div class="tag">
                   <div>HP</div>
@@ -60,8 +60,9 @@ const ListPokemon = () => {
                   <div class="content">{pokemon.height}m</div>
                 </div>
               </div>
+              */}
+              </div>
             </div>
-            <div id="num">{pokemon.id}</div>
           </div>
         ))}
       </div>

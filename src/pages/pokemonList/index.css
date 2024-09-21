@@ -4,14 +4,14 @@
   justify-content: center;
 }
 
-
 .pokemon {
   display: flex;
   flex-direction: column;
 
   margin: 5px;
+  margin-top: -31px;
 
-  background-color: #4B5563;
+  background-color: #4b5563;
   border-radius: 16px;
 
   align-items: center;
@@ -20,9 +20,8 @@
   height: 381px;
   width: 253px;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
 
 #foto {
   border-radius: 11px 11px 0 0;
@@ -31,9 +30,13 @@
   width: 236px;
 }
 
-#num {
+
+.id {
+  position: relative;
   top: 22px;
-  left: 197px;
+  left: 207px;
+  
+  font-family: "Roboto", sans-serif;
 
   width: 36px;
   height: 36px;
@@ -41,12 +44,11 @@
 
   color: white;
   background-color: #374151;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 #info {
   border-radius: 0 0 11px 11px;
@@ -65,6 +67,7 @@
   align-items: center;
 
   font-size: 18px;
+  text-transform: capitalize;
 
   width: 190px;
   height: 46px;
