@@ -13,6 +13,7 @@ const PokemonListPresentational = ({
 }) => {
   return (
     <div className="App">
+      <SearchBox/>
       <div className="pokedex">
         {loading && <p className="loading">Cargando...</p>}
         {!loading &&

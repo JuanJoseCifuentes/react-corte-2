@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from "react";
 import { usePokemonDispatch, usePokemonCtx } from "../context/pokemonCtx";
 import { actions } from "../context/pokemonReducer";
-import { useFiltersContext } from "../context/filterCtx";
+import { useFilterContext } from "../context/filterCtx";
 import Pokedex from "pokedex-promise-v2";
 
 const usePokemons = () => {
     const dispatch = usePokemonDispatch();
-    const { filters } = useFiltersContext();
+    const { filters } = useFilterContext();
     const { metadata } = usePokemonCtx();
     const pokedex = new Pokedex();
 

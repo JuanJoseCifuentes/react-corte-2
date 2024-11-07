@@ -11,7 +11,6 @@ const ListPokemon = () => {
     const totalPages = total/limit;
 
     return (
-      
       <PokemonListPresentational 
           pokemons={pokemons}
           loading={loading}
