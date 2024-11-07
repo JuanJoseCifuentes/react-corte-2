@@ -21,7 +21,7 @@ const ListPokemon = () => {
 
   const handleSearch = (search) => {
     const filtered = pokemons.filter((pokemon) =>
-      pokemon.name.includes(search)
+      pokemon.name.toLowerCase().includes(search.toLowerCase())
     );
     setSearched(filtered);
   };
