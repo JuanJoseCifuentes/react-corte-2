@@ -8,8 +8,13 @@ export const actions = {
 export const initialState = {
   pokemons: [],
   loading: false,
-  pokemon: null,
+  pokemon: {},
   error: null,
+  metadata: {
+    total: 1025,
+    limit: 150,
+    offset: 0,
+  },
 };
 
 export const pokemonReducer = (state, action) => {

@@ -1,46 +1,32 @@
-import { createContext, useContext, useReducer } from "react";
-import Pokedex from "pokedex-promise-v2";
+import { createContext, useContext, useReducer} from "react";
+import { initialState, pokemonReducer } from "./pokemonReducer";
 
-const PokemonContext = createContext([]);
+const PokemonContext = createContext(null);
+const PokemonDispatchContext = createContext(null);
 
-export function usePokemon() {
-    const context = useContext(PokemonContext);
-
-    if(!context) {
-        throw new Error("AHHHHHH");
-    }
-    return context;
+export function usePokemonCtx() {
+  const context = useContext(PokemonContext);
+  if (!context) {
+    throw new Error("usePokemon must be used within a PokemonProvider");
+  }
+  return context;
 }
 
-const interval = {
-    limit: 151,
-    offset: 0,
-  };
+export function usePokemonDispatch() {
+    const context = useContext(PokemonDispatchContext);
+    if (!context) {
+        throw new Error("usePokemonDispatch must be used within a PokemonProvider");
+    }
+    return context;
+    }
 
 export function PokemonProvider({ children }) {
-    const [pokemons, setPokemons] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    const fetchPokemons = useCallback(async () => {
-        setLoading(true);
-        const pokedex = new Pokedex();
-        const response = await pokedex.getPokemonsList({
-          ...interval,
-          offset: page * interval.limit,
-        });
-        const urls = response.results.map((pokemon) => pokemon.url);
-        const pokemonsResponse = await pokedex.getResource(urls);
-        setPokemons(pokemonsResponse);
-        setLoading(false);
-      }, [page, setPokemons]);
-    
-      useEffect(() => {
-        fetchPokemons();
-      }, [fetchPokemons]);
-
+    const [state, dispatch] = useReducer(pokemonReducer, initialState);
     return (
-        <PokemonContext.Provider value={{}}>
-            {children}
+        <PokemonContext.Provider value={state}>
+            <PokemonDispatchContext.Provider value={dispatch}>
+                {children}
+            </PokemonDispatchContext.Provider>
         </PokemonContext.Provider>
-    )
+    );
 }
