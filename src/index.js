@@ -1,32 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import ListPokemon from './pages/pokemonList/index';
-import DetailPokemon from './pages/pokemonDetail/index'
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import ListPokemon from "./pages/pokemonList/index";
+import DetailPokemon from "./pages/pokemonDetail/index";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { PokemonProvider } from "./context/pokemonCtx";
+import { FiltersProvider } from "./context/filterCtx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <ListPokemon />
+    path: "/",
+    element: <ListPokemon />,
   },
   {
-    path: '/detail/:idPokemon',
-    element: <DetailPokemon />
+    path: "/detail/:idPokemon",
+    element: <DetailPokemon />,
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PokemonProvider>
+      <FiltersProvider>
+        <RouterProvider router={router} />
+      </FiltersProvider>
+    </PokemonProvider>
   </React.StrictMode>
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
