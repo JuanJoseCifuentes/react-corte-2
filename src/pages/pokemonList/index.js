@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import usePokemons from '../../hooks/usePokemons';
-import {usePokemonCtx} from '../../context/pokemonCtx';
+import {usePokemonContext} from '../../context/pokemonCtx';
 import PokemonListPresentational from '../../presentational/pokemonListPresentational';
 
-const ListPokemon = () => {
+const PokemonList = () => {
     usePokemons();
-    const {pokemons, loading, metadata: {total, limit}} = usePokemonCtx();
+    const {pokemons, loading, metadata: {total, limit}} = usePokemonContext();
     const [page, setPage] = useState(0);
 
     const totalPages = total/limit;
@@ -22,4 +22,4 @@ const ListPokemon = () => {
     );
   };
 
-export default ListPokemon;
+export default PokemonList;

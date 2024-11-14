@@ -4,7 +4,7 @@ import { initialState, pokemonReducer } from "./pokemonReducer";
 const PokemonContext = createContext(null);
 const PokemonDispatchContext = createContext(null);
 
-export function usePokemonCtx() {
+export function usePokemonContext() {
   const context = useContext(PokemonContext);
   if (!context) {
     throw new Error("usePokemon must be used within a PokemonProvider");
